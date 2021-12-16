@@ -10,11 +10,7 @@ function windowed(array $a, int $n): array
 	return $w;
 }
 
-function part_one(array $a): int
-{
-	return count(array_filter(windowed($a, 2), fn (array $a): bool => $a[1] > $a[0]));
-}
-
 $f = file('input');
-printf("%d\n", part_one($f));
-printf("%d\n", part_one(array_map(fn (array $a): int => array_sum($a), windowed($f, 3))));
+$partOne = fn (array $a): int => count(array_filter(windowed($a, 2), fn (array $a): bool => $a[1] > $a[0]));
+printf("%d\n", $partOne($f));
+printf("%d\n", $partOne(array_map(fn (array $a): int => array_sum($a), windowed($f, 3))));
